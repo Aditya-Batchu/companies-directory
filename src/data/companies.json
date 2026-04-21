@@ -1,0 +1,20 @@
+[
+  { "id": 1, "name": "Google", "location": "USA", "industry": "Technology", "employees": 156000 },
+  { "id": 2, "name": "Spotify", "location": "Sweden", "industry": "Entertainment", "employees": 9300 },
+  { "id": 3, "name": "Toyota", "location": "Japan", "industry": "Automotive", "employees": 370000 },
+  { "id": 4, "name": "HSBC", "location": "UK", "industry": "Finance", "employees": 219000 },
+  { "id": 5, "name": "Nestlé", "location": "Switzerland", "industry": "Food & Beverage", "employees": 273000 },
+  { "id": 6, "name": "Samsung", "location": "South Korea", "industry": "Technology", "employees": 267000 },
+  { "id": 7, "name": "Amazon", "location": "USA", "industry": "E-Commerce", "employees": 1540000 },
+  { "id": 8, "name": "Siemens", "location": "Germany", "industry": "Engineering", "employees": 311000 },
+  { "id": 9, "name": "Infosys", "location": "India", "industry": "Technology", "employees": 343000 },
+  { "id": 10, "name": "Netflix", "location": "USA", "industry": "Entertainment", "employees": 13000 },
+  { "id": 11, "name": "LVMH", "location": "France", "industry": "Luxury Goods", "employees": 213000 },
+  { "id": 12, "name": "Shell", "location": "Netherlands", "industry": "Energy", "employees": 93000 },
+  { "id": 13, "name": "Alibaba", "location": "China", "industry": "E-Commerce", "employees": 245700 },
+  { "id": 14, "name": "JPMorgan Chase", "location": "USA", "industry": "Finance", "employees": 293723 },
+  { "id": 15, "name": "Volkswagen", "location": "Germany", "industry": "Automotive", "employees": 672800 },
+  { "id": 16, "name": "Tata Consultancy", "location": "India", "industry": "Technology", "employees": 614795 },
+  { "id": 17, "name": "Unilever", "location": "UK", "industry": "Food & Beverage", "employees": 128000 },
+  { "id": 18, "name": "Saudi Aramco", "location": "Saudi Arabia", "industry": "Energy", "employees": 70000 }
+]
