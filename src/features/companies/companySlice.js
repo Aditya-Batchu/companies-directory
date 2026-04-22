@@ -17,6 +17,13 @@ const initialState = {
   status: "idle", // idle | loading | success | error
 };
 
+const resetFilterState = {
+  search: "",
+  location: "",
+  industry: "",
+  sort: "",
+};
+
 const companySlice = createSlice({
   name: "companies",
   initialState,
@@ -64,6 +71,11 @@ const companySlice = createSlice({
       state.filteredCompanies = applyFilters(state.companies, state.filters);
       state.pagination.currentPage = 1;
     },
+    resetFilters(state) {
+      state.filters = { ...resetFilterState };
+      state.pagination.currentPage = 1;
+      state.filteredCompanies = state.companies;
+    },
   },
 });
 
@@ -75,6 +87,7 @@ export const {
   setSort,
   setPage,
   addCompany,
+  resetFilters,
 } = companySlice.actions;
 
 export default companySlice.reducer;
