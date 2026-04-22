@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadCompanies } from "../features/companies/companySlice";
 import {
-  selectPaginatedCompanies,
+  selectFilteredCompanies,
   selectTotalPages,
   selectTotalResults,
   selectStatus,
@@ -22,7 +22,7 @@ export function useCompanies() {
   }, [dispatch]);
 
   return {
-    companies: useSelector(selectPaginatedCompanies),
+    companies: useSelector(selectFilteredCompanies),
     totalPages: useSelector(selectTotalPages),
     totalResults: useSelector(selectTotalResults),
     status: useSelector(selectStatus),

@@ -4,6 +4,8 @@ export const selectAllCompanies = (state) => state.companies.companies;
 export const selectFilters = (state) => state.companies.filters;
 export const selectStatus = (state) => state.companies.status;
 export const selectPagination = (state) => state.companies.pagination;
+export const selectFilteredCompanies = (state) =>
+  state.companies.filteredCompanies;
 
 // Returns companies from page 1 up to the current page for infinite scrolling
 export const selectPaginatedCompanies = (state) => {

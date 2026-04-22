@@ -1,39 +1,22 @@
-import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Loader from "../ui/Loader";
 import ErrorMessage from "../ui/ErrorMessage";
 import EmptyState from "../ui/EmptyState";
 import CompanyGrid from "./CompanyGrid";
-import { setPage } from "../../features/companies/companySlice";
-import {
-  selectPagination,
-  selectStatus,
-  selectTotalPages,
-} from "../../features/companies/companySelectors";
 
 export default function CompanyList({ companies, status }) {
-  const dispatch = useDispatch();
   const sentinelRef = useRef(null);
+  const batchSize = 6;
   const [showIntroSkeleton, setShowIntroSkeleton] = useState(true);
-  const { currentPage } = useSelector(selectPagination);
-  const totalPages = useSelector(selectTotalPages);
-  const currentStatus = useSelector(selectStatus);
+  const [visibleCount, setVisibleCount] = useState(batchSize);
+  const visibleCompanies = useMemo(
+    () => companies.slice(0, visibleCount),
+    [companies, visibleCount],
+  );
 
   useEffect(() => {
-    if (currentStatus !== "success") return;
-    if (currentPage >= totalPages) return;
-
-    const viewportHeight = window.innerHeight;
-    const pageHeight = document.documentElement.scrollHeight;
-
-    if (pageHeight <= viewportHeight + 120) {
-      const timer = window.setTimeout(() => {
-        dispatch(setPage(currentPage + 1));
-      }, 0);
-
-      return () => window.clearTimeout(timer);
-    }
-  }, [currentPage, currentStatus, dispatch, totalPages, companies.length]);
+    setVisibleCount(batchSize);
+  }, [companies]);
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -47,12 +30,16 @@ export default function CompanyList({ companies, status }) {
 
   useEffect(() => {
     if (!sentinelRef.current) return;
-    if (currentStatus !== "success") return;
+    if (status !== "success") return;
+    if (showIntroSkeleton) return;
+    if (visibleCount >= companies.length) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && currentPage < totalPages) {
-          dispatch(setPage(currentPage + 1));
+        if (entry.isIntersecting) {
+          setVisibleCount((currentValue) =>
+            Math.min(currentValue + batchSize, companies.length),
+          );
         }
       },
       {
@@ -67,7 +54,26 @@ export default function CompanyList({ companies, status }) {
     return () => {
       observer.disconnect();
     };
-  }, [currentPage, currentStatus, dispatch, totalPages]);
+  }, [batchSize, companies.length, showIntroSkeleton, status, visibleCount]);
+
+  useEffect(() => {
+    if (status !== "success") return;
+    if (showIntroSkeleton) return;
+    if (visibleCount >= companies.length) return;
+
+    const viewportHeight = window.innerHeight;
+    const pageHeight = document.documentElement.scrollHeight;
+
+    if (pageHeight <= viewportHeight + 120) {
+      const timer = window.setTimeout(() => {
+        setVisibleCount((currentValue) =>
+          Math.min(currentValue + batchSize, companies.length),
+        );
+      }, 0);
+
+      return () => window.clearTimeout(timer);
+    }
+  }, [batchSize, companies.length, showIntroSkeleton, status, visibleCount]);
 
   if (showIntroSkeleton || status === "loading") return <Loader />;
   if (status === "error") return <ErrorMessage />;
@@ -75,7 +81,7 @@ export default function CompanyList({ companies, status }) {
 
   return (
     <>
-      <CompanyGrid companies={companies} />
+      <CompanyGrid companies={visibleCompanies} />
       <div ref={sentinelRef} className="h-10 w-full" aria-hidden="true" />
     </>
   );
