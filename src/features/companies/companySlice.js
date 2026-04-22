@@ -48,7 +48,21 @@ const companySlice = createSlice({
       state.filteredCompanies = applyFilters(state.companies, state.filters);
     },
     setPage(state, action) {
-      state.pagination.currentPage = action.payload;
+      const totalPages = Math.max(
+        1,
+        Math.ceil(
+          state.filteredCompanies.length / state.pagination.itemsPerPage,
+        ),
+      );
+      state.pagination.currentPage = Math.min(
+        totalPages,
+        Math.max(1, action.payload),
+      );
+    },
+    addCompany(state, action) {
+      state.companies.unshift(action.payload);
+      state.filteredCompanies = applyFilters(state.companies, state.filters);
+      state.pagination.currentPage = 1;
     },
   },
 });
@@ -60,6 +74,7 @@ export const {
   setIndustry,
   setSort,
   setPage,
+  addCompany,
 } = companySlice.actions;
 
 export default companySlice.reducer;

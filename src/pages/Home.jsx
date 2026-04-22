@@ -3,7 +3,6 @@ import SearchBar from "../components/filters/SearchBar";
 import FilterPanel from "../components/filters/FilterPanel";
 import SortDropdown from "../components/filters/SortDropdown";
 import CompanyList from "../components/company/CompanyList";
-import Pagination from "../components/pagination/Pagination";
 import { useCompanies } from "../hooks/useCompanies";
 
 export default function Home() {
@@ -30,9 +29,6 @@ export default function Home() {
 
       {/* Company grid */}
       <CompanyList companies={companies} status={status} />
-
-      {/* Pagination */}
-      <Pagination />
     </Container>
   );
 }
