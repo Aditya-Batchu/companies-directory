@@ -1,9 +1,10 @@
 export default function Navbar({ onAddCompany }) {
   return (
-    <header className="sticky top-0 z-10 border-b border-slate-200 bg-white/95 text-slate-900 shadow-sm backdrop-blur">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+    <header className="sticky top-0 z-10 border-b border-slate-800/80 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 text-white shadow-[0_12px_40px_rgba(15,23,42,0.28)] backdrop-blur-sm">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.10),transparent_35%),radial-gradient(circle_at_top_right,rgba(59,130,246,0.08),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.02),transparent)] pointer-events-none" />
+      <div className="relative max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-cyan-500 via-blue-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/20 ring-1 ring-slate-200">
+          <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-cyan-500 via-sky-600 to-indigo-700 flex items-center justify-center shadow-lg shadow-cyan-500/18 ring-1 ring-white/10">
             <svg
               className="w-5 h-5 text-white"
               fill="none"
@@ -19,10 +20,10 @@ export default function Navbar({ onAddCompany }) {
             </svg>
           </div>
           <div>
-            <span className="block text-xl font-bold tracking-tight text-slate-900">
-              Companies <span className="text-blue-600">Directory</span>
+            <span className="block text-xl font-bold tracking-tight text-white">
+              Companies <span className="text-cyan-300">Directory</span>
             </span>
-            <span className="block text-xs text-slate-500">
+            <span className="block text-xs text-slate-300">
               Explore, filter, and add companies with one clean workspace.
             </span>
           </div>
@@ -32,7 +33,7 @@ export default function Navbar({ onAddCompany }) {
           <button
             type="button"
             onClick={onAddCompany}
-            className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/20 transition-all duration-200 hover:-translate-y-0.5 hover:from-cyan-400 hover:to-blue-500 hover:shadow-xl hover:shadow-blue-600/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+            className="inline-flex items-center gap-2 rounded-xl bg-white/12 px-4 py-2.5 text-sm font-semibold text-white ring-1 ring-inset ring-white/18 shadow-lg shadow-cyan-950/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/18 hover:ring-white/28 hover:shadow-xl hover:shadow-cyan-950/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
           >
             <svg
               className="h-4 w-4"
